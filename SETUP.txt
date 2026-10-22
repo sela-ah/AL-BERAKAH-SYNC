@@ -1,0 +1,55 @@
+AL BERAKAH - LIVE SYNC APP (works on laptop, phone, tablet; installs like an app)
+
+HOW IT WORKS
+  The app is a web page (PWA). Your cheques are stored in your own free Supabase
+  cloud project. Every device you sign in on shows the same list and updates live.
+  No Claude login is needed.
+
+FILES (upload ALL of them to GitHub, except this SETUP.txt and supabase-setup.sql are optional)
+  index.html, config.js, supabase.js, sw.js, manifest.webmanifest, icon-192.png, icon-512.png
+
+PART 1 - CREATE YOUR CLOUD DATABASE (once, free)
+  1. Go to supabase.com and sign up (you can use your GitHub login).
+  2. Click New project. Name: al-berakah. Choose a database password and SAVE IT.
+     Choose the region closest to you. Plan: Free. Click Create.
+  3. Wait until the project is ready. Open SQL Editor > New query.
+  4. Open supabase-setup.sql, copy ALL of it, paste it into the editor, press Run.
+     It should say "Success".
+  5. Open Project Settings > API (it may be called "API Keys").
+     Copy the "Project URL" and the "anon public" key (newer screens call it
+     the "publishable" key).
+  6. Open Authentication > Sign In / Providers > Email. Turn OFF "Confirm email"
+     (easier first sign-up) and Save.
+
+PART 2 - PUT YOUR TWO VALUES INTO THE APP
+  Open config.js, replace PASTE_YOUR_PROJECT_URL_HERE and PASTE_YOUR_ANON_KEY_HERE
+  with the two values from step 5. Keep the quotation marks. (On GitHub: click the
+  file, click the pencil icon, edit, Commit changes.)
+  These two values are meant to be public. Your cheques are protected by your login.
+
+PART 3 - PUBLISH THE APP
+  1. On GitHub create a new PUBLIC repository named al-berakah-sync.
+  2. Upload all the app files (drag them in). Commit changes.
+  3. Settings > Pages > Source: Deploy from a branch > main > / (root) > Save.
+  4. After 1-2 minutes your address is https://YOURNAME.github.io/al-berakah-sync/
+
+PART 4 - FIRST USE
+  1. Open the address. Type your email and a password (8+ characters). Press
+     "First time? Create my account".
+  2. IMPORTANT: now go back to Supabase > Authentication > Sign In / Providers and
+     turn OFF "Allow new users to sign up". This stops strangers creating accounts.
+  3. In the app press "Restore backup" and choose my-cheques-backup-PRIVATE.json.
+     Your cheques upload to the cloud. (Never upload that file to GitHub.)
+
+PART 5 - INSTALL ON EACH DEVICE
+  Laptop (Chrome/Edge): menu > Install page as app.
+  Android (Chrome): menu > Install app / Add to Home screen.
+  iPhone/iPad (Safari): Share button > Add to Home Screen.
+  Then sign in with the same email and password on each device.
+
+SAFETY
+  - Use a strong password and keep it safe. If you forget it, use Supabase to reset it.
+  - Use "Backup now" now and then and keep the file somewhere safe.
+  - Free Supabase projects can be paused if unused for a long time. Open the app
+    regularly and check Supabase's current free-plan rules.
+  - If you are offline, changes are kept on the device and sent when the internet returns.
